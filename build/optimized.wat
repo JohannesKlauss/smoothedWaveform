@@ -9,8 +9,8 @@
  (type $i32_i32_i32_i32_=>_none (func (param i32 i32 i32 i32)))
  (type $i32_i32_f32_=>_none (func (param i32 i32 f32)))
  (type $none_=>_i32 (func (result i32)))
- (type $i32_i32_i32_i32_f32_=>_i32 (func (param i32 i32 i32 i32 f32) (result i32)))
  (type $i32_f32_f32_=>_i32 (func (param i32 f32 f32) (result i32)))
+ (type $f32_i32_i32_i32_f32_=>_i32 (func (param f32 i32 i32 i32 f32) (result i32)))
  (type $i32_i32_=>_f32 (func (param i32 i32) (result f32)))
  (import "env" "abort" (func $~lib/builtins/abort (param i32 i32 i32 i32)))
  (memory $0 1)
@@ -32,6 +32,7 @@
  (export "__collect" (func $~lib/rt/pure/__collect))
  (export "__rtti_base" (global $~lib/rt/__rtti_base))
  (export "createPointCloud" (func $assembly/index/createPointCloud))
+ (export "waveformAlgorithm" (func $assembly/index/waveformAlgorithm))
  (export "createWaveformPointCloud" (func $assembly/index/createWaveformPointCloud@varargs))
  (export "__setArgumentsLength" (func $~setArgumentsLength))
  (func $~lib/rt/tlsf/removeBlock (param $0 i32) (param $1 i32)
@@ -1794,7 +1795,7 @@
   i32.load offset=12
   i32.const 1
   i32.shl
-  i32.const 7
+  i32.const 4
   i32.add
   call $~lib/array/Array<f32>#constructor
   local.set $4
@@ -1954,87 +1955,73 @@
   local.get $4
  )
  (func $assembly/index/waveformAlgorithm (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
-  (local $3 f32)
-  (local $4 f32)
+  (local $3 i32)
+  (local $4 i32)
   (local $5 f32)
-  (local $6 i32)
+  (local $6 f32)
   (local $7 i32)
   (local $8 i32)
   (local $9 i32)
-  (local $10 i32)
-  (local $11 f32)
-  (local $12 i32)
+  (local $10 f32)
+  (local $11 i32)
+  (local $12 f32)
   local.get $1
   call $~lib/rt/pure/__retain
-  local.set $6
+  local.set $3
   local.get $2
   call $~lib/rt/pure/__retain
-  local.set $9
-  local.get $6
+  local.set $8
+  local.get $3
   i32.load offset=12
   local.get $0
   i32.div_s
-  local.set $10
+  local.set $9
   local.get $0
   i32.const 1
   i32.shl
   call $~lib/array/Array<f32>#constructor
   local.set $2
   loop $for-loop|0
-   local.get $7
+   local.get $4
    local.get $0
    i32.lt_s
    if
-    f32.const 1
-    local.set $4
     f32.const -1
     local.set $5
+    f32.const -1
+    local.set $6
     i32.const 0
     local.set $1
     loop $for-loop|1
      local.get $1
-     local.get $10
+     local.get $9
      i32.lt_s
      if
-      local.get $6
+      local.get $3
       local.get $1
-      local.get $7
-      local.get $10
+      local.get $4
+      local.get $9
       i32.mul
       i32.add
-      local.tee $12
-      call $~lib/array/Array<f32>#__get
-      local.set $3
-      local.get $9
-      local.get $12
-      call $~lib/array/Array<f32>#__get
       local.tee $11
-      local.get $3
-      f32.const 0
-      local.get $3
-      f32.abs
-      f32.const 0
-      f32.gt
-      select
+      call $~lib/array/Array<f32>#__get
+      local.set $10
+      local.get $8
       local.get $11
+      call $~lib/array/Array<f32>#__get
+      local.tee $12
       f32.abs
-      local.get $11
+      local.get $10
       f32.abs
-      f32.gt
-      select
-      local.tee $3
-      local.get $4
-      f32.lt
-      if
-       local.get $3
-       local.set $4
-      end
-      local.get $3
+      local.get $6
+      f32.max
+      f32.max
+      local.set $6
+      local.get $12
+      local.get $10
       local.get $5
-      local.get $3
-      local.get $5
-      f32.gt
-      select
+      f32.min
+      f32.min
       local.set $5
       local.get $1
       i32.const 1
@@ -2044,29 +2031,29 @@
      end
     end
     local.get $2
-    local.get $8
-    local.get $5
+    local.get $7
+    local.get $6
     call $~lib/array/Array<f32>#__set
     local.get $2
     local.get $0
-    local.get $8
+    local.get $7
     i32.add
-    local.get $4
+    local.get $5
     call $~lib/array/Array<f32>#__set
-    local.get $8
-    i32.const 1
-    i32.add
-    local.set $8
     local.get $7
     i32.const 1
     i32.add
     local.set $7
+    local.get $4
+    i32.const 1
+    i32.add
+    local.set $4
     br $for-loop|0
    end
   end
-  local.get $6
+  local.get $3
   call $~lib/rt/pure/__release
-  local.get $9
+  local.get $8
   call $~lib/rt/pure/__release
   local.get $2
  )
@@ -2173,7 +2160,8 @@
   i32.sub
   call $~lib/rt/pure/decrement
  )
- (func $assembly/index/createWaveformPointCloud@varargs (param $0 i32) (param $1 i32) (param $2 i32) (param $3 i32) (param $4 f32) (result i32)
+ (func $assembly/index/createWaveformPointCloud@varargs (param $0 f32) (param $1 i32) (param $2 i32) (param $3 i32) (param $4 f32) (result i32)
+  (local $5 i32)
   block $1of1
    block $0of1
     block $outOfRange
@@ -2194,22 +2182,23 @@
   call $~lib/rt/pure/__retain
   local.set $3
   local.get $0
-  f32.convert_i32_s
   local.get $4
   f32.div
   f32.ceil
   i32.trunc_f32_s
+  i32.const 1
+  i32.add
   local.get $2
   local.get $3
   call $assembly/index/waveformAlgorithm
-  local.tee $0
+  local.tee $5
   local.get $4
   local.get $1
   i32.const 2
   i32.div_s
   f32.convert_i32_s
   call $assembly/index/createPointCloud
-  local.get $0
+  local.get $5
   call $~lib/rt/pure/__release
   local.get $2
   call $~lib/rt/pure/__release

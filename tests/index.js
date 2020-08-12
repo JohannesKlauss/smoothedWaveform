@@ -1,42 +1,42 @@
 const assert = require("assert");
 const myModule = require("..");
-const AudioContext = require("web-audio-api").AudioContext;
+const {performance} = require('perf_hooks');
 
-const expectedOutput = require('./fixtures');
+const expectedOutputPointCloud = require('./fixturesPointCloud');
+const expectedOutputPeakValues = require('./fixturesPeakValues');
+const expectedOutputLeftChannelData = require('./fixturesLeftChannelSubData');
 
-const ctx = new AudioContext();
+const completeWidth = 648.6496598639455;
+const height = 80;
+const leftChannelData = expectedOutputLeftChannelData;
+const rightChannelData = new Float32Array(leftChannelData.length);
+const smoothing = 2;
 
-const fsPromises = require('fs').promises;
-fsPromises.readFile('./tests/default.wav').then(function(data) {
-  return new Promise(function(resolve, reject) {
-    ctx.decodeAudioData(data, function(dataBuffer) {
-      return resolve(dataBuffer);
-    }, function(err) {
-      reject(err);
-    });
-  });
-}).then(function(bufferResult) {
-  const completeWidth = 645;
-  const height = 70;
-  const leftChannelData = bufferResult.getChannelData(0);
-  const rightChannelData = new Float32Array(leftChannelData.length).fill(0);
-  const smoothing = 2;
+const {createWaveformPointCloud, waveformAlgorithm} = myModule
+const {__getArray, __release} = myModule
 
-  const { createWaveformPointCloud } = myModule
-  const { __getArray, __release } = myModule
+function doCreateWaveformPointCloud() {
+  const t = performance.now();
 
-  function doCreateWaveformPointCloud() {
-    const arrPtr = createWaveformPointCloud(completeWidth, height, leftChannelData, rightChannelData, smoothing);
-    const values = __getArray(arrPtr);
+  const peaksPtr = waveformAlgorithm(Math.ceil(completeWidth / smoothing) + 1, leftChannelData, rightChannelData);
+  const peakValues = __getArray(peaksPtr);
 
-    assert.strictEqual(values, expectedOutput);
+  //assert.strictEqual(peakValues.length, expectedOutputPeakValues.length);
+  //assert.strictEqual(peakValues.slice(0, 10), expectedOutputPeakValues.slice(0, 10));
 
-    __release(arrPtr);
+  const arrPtr = createWaveformPointCloud(completeWidth, height, leftChannelData, rightChannelData, smoothing);
+  const values = __getArray(arrPtr);
 
-    console.log("ok");
-  }
+  console.log('calc', performance.now() - t);
 
-  doCreateWaveformPointCloud();
-});
+  assert.strictEqual(values.length, expectedOutputPointCloud.length);
+  assert.strictEqual(values.slice(0, 5), expectedOutputPointCloud.slice(0, 5));
+
+  __release(arrPtr);
+
+  console.log("ok");
+}
+
+doCreateWaveformPointCloud();
 
 
