@@ -10,8 +10,7 @@
     "@assemblyscript/loader": "^0.14.7"
   },
   "devDependencies": {
-    "assemblyscript": "^0.14.7",
-    "web-audio-api": "^0.2.2"
+    "assemblyscript": "^0.14.7"
   },
   "scripts": {
     "asbuild:untouched": "asc assembly/index.ts --target debug",

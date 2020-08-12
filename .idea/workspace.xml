@@ -19,18 +19,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="70a6d960-6d43-4811-bf4e-658f4dee79a4" name="Default Changelist" comment="init commit">
-      <change afterPath="$PROJECT_DIR$/assembly/original.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/fixturesLeftChannelSubData.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/fixturesPeakValues.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/fixturesPointCloud.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="70a6d960-6d43-4811-bf4e-658f4dee79a4" name="Default Changelist" comment="Added useful fixtures.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assembly/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/assembly/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/optimized.wat" beforeDir="false" afterPath="$PROJECT_DIR$/build/optimized.wat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/untouched.wat" beforeDir="false" afterPath="$PROJECT_DIR$/build/untouched.wat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/fixtures.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -148,7 +139,7 @@
       <workItem from="1596208733215" duration="5963000" />
       <workItem from="1596223388127" duration="55000" />
       <workItem from="1596270540672" duration="707000" />
-      <workItem from="1597254193197" duration="2668000" />
+      <workItem from="1597254193197" duration="2737000" />
     </task>
     <task id="LOCAL-00001" summary="init commit">
       <created>1596223421123</created>
@@ -157,7 +148,14 @@
       <option name="project" value="LOCAL" />
       <updated>1596223421123</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Added useful fixtures.">
+      <created>1597256948463</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1597256948463</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -177,7 +175,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="init commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="init commit" />
+    <MESSAGE value="Added useful fixtures." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added useful fixtures." />
   </component>
   <component name="WindowStateProjectService">
     <state x="360" y="233" width="1071" height="772" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1596208960856">
@@ -188,29 +187,29 @@
       <screen x="0" y="23" width="1792" height="1097" />
     </state>
     <state x="634" y="325" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1792.1097@0.23.1792.1097" timestamp="1596221049179" />
-    <state width="1771" height="303" key="GridCell.Tab.0.bottom" timestamp="1597256884536">
+    <state width="1771" height="303" key="GridCell.Tab.0.bottom" timestamp="1597256902034">
       <screen x="0" y="23" width="1792" height="1097" />
     </state>
-    <state width="1771" height="303" key="GridCell.Tab.0.bottom/0.23.1792.1097@0.23.1792.1097" timestamp="1597256884536" />
-    <state width="1771" height="303" key="GridCell.Tab.0.center" timestamp="1597256884536">
+    <state width="1771" height="303" key="GridCell.Tab.0.bottom/0.23.1792.1097@0.23.1792.1097" timestamp="1597256902034" />
+    <state width="1771" height="303" key="GridCell.Tab.0.center" timestamp="1597256902027">
       <screen x="0" y="23" width="1792" height="1097" />
     </state>
-    <state width="1771" height="303" key="GridCell.Tab.0.center/0.23.1792.1097@0.23.1792.1097" timestamp="1597256884536" />
-    <state width="1771" height="303" key="GridCell.Tab.0.left" timestamp="1597256884534">
+    <state width="1771" height="303" key="GridCell.Tab.0.center/0.23.1792.1097@0.23.1792.1097" timestamp="1597256902027" />
+    <state width="1771" height="303" key="GridCell.Tab.0.left" timestamp="1597256902025">
       <screen x="0" y="23" width="1792" height="1097" />
     </state>
-    <state width="1771" height="303" key="GridCell.Tab.0.left/0.23.1792.1097@0.23.1792.1097" timestamp="1597256884534" />
-    <state width="1771" height="303" key="GridCell.Tab.0.right" timestamp="1597256884536">
+    <state width="1771" height="303" key="GridCell.Tab.0.left/0.23.1792.1097@0.23.1792.1097" timestamp="1597256902025" />
+    <state width="1771" height="303" key="GridCell.Tab.0.right" timestamp="1597256902033">
       <screen x="0" y="23" width="1792" height="1097" />
     </state>
-    <state width="1771" height="303" key="GridCell.Tab.0.right/0.23.1792.1097@0.23.1792.1097" timestamp="1597256884536" />
+    <state width="1771" height="303" key="GridCell.Tab.0.right/0.23.1792.1097@0.23.1792.1097" timestamp="1597256902033" />
     <state x="397" y="210" key="SettingsEditor" timestamp="1596209035685">
       <screen x="0" y="23" width="1792" height="1097" />
     </state>
     <state x="397" y="210" key="SettingsEditor/0.23.1792.1097@0.23.1792.1097" timestamp="1596209035685" />
-    <state x="496" y="311" key="Vcs.Push.Dialog.v2" timestamp="1596223422809">
+    <state x="496" y="311" key="Vcs.Push.Dialog.v2" timestamp="1597256950039">
       <screen x="0" y="23" width="1792" height="1097" />
     </state>
-    <state x="496" y="311" key="Vcs.Push.Dialog.v2/0.23.1792.1097@0.23.1792.1097" timestamp="1596223422809" />
+    <state x="496" y="311" key="Vcs.Push.Dialog.v2/0.23.1792.1097@0.23.1792.1097" timestamp="1597256950039" />
   </component>
 </project>
